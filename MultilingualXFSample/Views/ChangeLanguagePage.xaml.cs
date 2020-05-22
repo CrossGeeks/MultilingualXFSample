@@ -1,6 +1,7 @@
 ﻿using System.Globalization;
 using System.Linq;
 using System.Threading;
+using MultilingualXFSample.Resources;
 using Xamarin.Forms;
 
 namespace MultilingualXFSample.Views
@@ -18,7 +19,9 @@ namespace MultilingualXFSample.Views
         {
             if (picker.SelectedItem != null)
             {
-                Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultures(CultureTypes.NeutralCultures).ToList().First(element => element.EnglishName.Contains(picker.SelectedItem.ToString()));
+                var language= CultureInfo.GetCultures(CultureTypes.NeutralCultures).ToList().First(element => element.EnglishName.Contains(picker.SelectedItem.ToString())); ;
+                Thread.CurrentThread.CurrentUICulture = language;
+                AppResources.Culture = language;
                 App.Current.MainPage = new NavigationPage(new MainPage());
             }
         }
